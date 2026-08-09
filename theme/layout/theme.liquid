@@ -17,6 +17,9 @@
     <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
   {% endif %}
 
+  <!-- Conexiune timpurie către CDN-ul Shopify (CSS, imagini, scripturi) -->
+  <link rel="preconnect" href="https://cdn.shopify.com">
+
   <!-- CSS temă petshop-constanta.ro -->
   {{ 'petshop-theme.css' | asset_url | stylesheet_tag }}
 

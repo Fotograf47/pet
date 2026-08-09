@@ -3,33 +3,40 @@
   Unde se pune: Online Store → Customize → Homepage → Add section → hero-banner
 {% endcomment %}
 
-{%- if section.settings.background_image != blank %}
+{%- liquid
+  # Lățimile din srcset sunt limitate la lățimea reală a imaginii —
+  # un descriptor mai mare decât originalul (ex. 2000w pentru un fișier
+  # de 1248px) face browserul să aleagă greșit varianta descărcată.
+  assign hero_image = section.settings.background_image
+-%}
+{%- capture hero_srcset -%}
+  {%- if hero_image.width >= 550 %}{{ hero_image | image_url: width: 550 }} 550w,{% endif %}
+  {%- if hero_image.width >= 750 %}{{ hero_image | image_url: width: 750 }} 750w,{% endif %}
+  {%- if hero_image.width >= 950 %}{{ hero_image | image_url: width: 950 }} 950w,{% endif %}
+  {%- if hero_image.width >= 1200 %}{{ hero_image | image_url: width: 1200 }} 1200w,{% endif %}
+  {%- if hero_image.width >= 1600 %}{{ hero_image | image_url: width: 1600 }} 1600w,{% endif %}
+  {%- if hero_image.width >= 2000 %}{{ hero_image | image_url: width: 2000 }} 2000w,{% endif %}
+  {{ hero_image | image_url }} {{ hero_image.width }}w
+{%- endcapture -%}
+
+{%- if hero_image != blank %}
   <link rel="preload" as="image" fetchpriority="high"
-    href="{{ section.settings.background_image | image_url: width: 1600 }}"
-    imagesrcset="
-      {{ section.settings.background_image | image_url: width: 800 }} 800w,
-      {{ section.settings.background_image | image_url: width: 1200 }} 1200w,
-      {{ section.settings.background_image | image_url: width: 1600 }} 1600w,
-      {{ section.settings.background_image | image_url: width: 2000 }} 2000w
-    ">
+    href="{{ hero_image | image_url: width: 1200 }}"
+    imagesrcset="{{ hero_srcset }}"
+    imagesizes="100vw">
 {%- endif %}
 
 <section class="hero-banner" style="background-color: {{ section.settings.bg_color }};">
-  {%- if section.settings.background_image != blank %}
+  {%- if hero_image != blank %}
     <img
       class="hero-banner__image"
-      src="{{ section.settings.background_image | image_url: width: 1600 }}"
-      srcset="
-        {{ section.settings.background_image | image_url: width: 800 }} 800w,
-        {{ section.settings.background_image | image_url: width: 1200 }} 1200w,
-        {{ section.settings.background_image | image_url: width: 1600 }} 1600w,
-        {{ section.settings.background_image | image_url: width: 2000 }} 2000w
-      "
+      src="{{ hero_image | image_url: width: 1200 }}"
+      srcset="{{ hero_srcset }}"
       sizes="100vw"
       alt=""
       role="presentation"
-      width="{{ section.settings.background_image.width }}"
-      height="{{ section.settings.background_image.height }}"
+      width="{{ hero_image.width }}"
+      height="{{ hero_image.height }}"
       loading="eager"
       fetchpriority="high"
     >

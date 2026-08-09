@@ -17,6 +17,13 @@
     <button class="promo-bar__close" onclick="closePromo()" aria-label="Închide">✕</button>
   </div>
 </div>
+<script>
+  // Rulează sincron, înainte ca restul paginii să fie desenat — bara închisă
+  // anterior dispare fără să mai împingă conținutul în jos (previne CLS).
+  if (sessionStorage.getItem('promo-closed')) {
+    document.getElementById('promo-bar-wrap').style.display = 'none';
+  }
+</script>
 
 <header class="site-header" id="site-header">
   <div class="site-header__inner page-width">
@@ -196,9 +203,6 @@
     document.getElementById('promo-bar-wrap').style.display = 'none';
     sessionStorage.setItem('promo-closed', '1');
   }
-  if (sessionStorage.getItem('promo-closed')) {
-    document.getElementById('promo-bar-wrap').style.display = 'none';
-  }
 
   // Mobile menu
   function toggleMobileMenu() {
@@ -217,13 +221,8 @@
     btn.classList.toggle('is-active');
   }
 
-  // Update cart count via AJAX
-  fetch('/cart.js')
-    .then(r => r.json())
-    .then(cart => {
-      const el = document.getElementById('cart-count');
-      if (el) el.textContent = cart.item_count;
-    });
+  // Numărul din coș e deja randat server-side de Liquid (cart.item_count);
+  // fetch-ul suplimentar spre /cart.js la fiecare încărcare era redundant.
 
   // Predictive search cu debounce
   (function() {
