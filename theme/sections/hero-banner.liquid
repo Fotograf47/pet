@@ -1,0 +1,139 @@
+{% comment %}
+  HERO BANNER — Pagina principală
+  Unde se pune: Online Store → Customize → Homepage → Add section → hero-banner
+{% endcomment %}
+
+{%- if section.settings.background_image != blank %}
+  <link rel="preload" as="image" fetchpriority="high"
+    href="{{ section.settings.background_image | image_url: width: 1600 }}"
+    imagesrcset="
+      {{ section.settings.background_image | image_url: width: 800 }} 800w,
+      {{ section.settings.background_image | image_url: width: 1200 }} 1200w,
+      {{ section.settings.background_image | image_url: width: 1600 }} 1600w,
+      {{ section.settings.background_image | image_url: width: 2000 }} 2000w
+    ">
+{%- endif %}
+
+<section class="hero-banner" style="background-color: {{ section.settings.bg_color }};">
+  {%- if section.settings.background_image != blank %}
+    <img
+      class="hero-banner__image"
+      src="{{ section.settings.background_image | image_url: width: 1600 }}"
+      srcset="
+        {{ section.settings.background_image | image_url: width: 800 }} 800w,
+        {{ section.settings.background_image | image_url: width: 1200 }} 1200w,
+        {{ section.settings.background_image | image_url: width: 1600 }} 1600w,
+        {{ section.settings.background_image | image_url: width: 2000 }} 2000w
+      "
+      sizes="100vw"
+      alt=""
+      role="presentation"
+      width="{{ section.settings.background_image.width }}"
+      height="{{ section.settings.background_image.height }}"
+      loading="eager"
+      fetchpriority="high"
+    >
+  {%- endif %}
+  <div class="hero-banner__overlay" style="background: rgba(0,0,0,{{ section.settings.overlay_opacity | divided_by: 100.0 }});">
+    <div class="hero-banner__content">
+      {% if section.settings.badge_text != blank %}
+        <span class="hero-banner__badge">{{ section.settings.badge_text }}</span>
+      {% endif %}
+
+      <h1 class="hero-banner__title">{{ section.settings.title }}</h1>
+
+      {% if section.settings.subtitle != blank %}
+        <p class="hero-banner__subtitle">{{ section.settings.subtitle }}</p>
+      {% endif %}
+
+      <div class="hero-banner__buttons">
+        {% if section.settings.btn1_text != blank %}
+          <a href="{{ section.settings.btn1_link }}" class="btn btn--primary">
+            {{ section.settings.btn1_text }}
+          </a>
+        {% endif %}
+        {% if section.settings.btn2_text != blank %}
+          <a href="{{ section.settings.btn2_link }}" class="btn btn--secondary">
+            {{ section.settings.btn2_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "tag": "section",
+  "class": "section-hero-banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Imagine fundal"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Culoare fundal (fallback)",
+      "default": "#1a3c5e"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Opacitate overlay întunecat",
+      "default": 30
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Text badge (ex: LIVRARE GRATUITĂ ÎN IUNIE)",
+      "default": "LIVRARE GRATUITĂ ÎN IUNIE"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titlu principal",
+      "default": "Tot ce are nevoie animalul tău preferat"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitlu",
+      "default": "Hrană premium, accesorii și îngrijire — livrate în 1-3 zile lucrătoare."
+    },
+    {
+      "type": "text",
+      "id": "btn1_text",
+      "label": "Buton 1 — text",
+      "default": "Descoperă produsele"
+    },
+    {
+      "type": "url",
+      "id": "btn1_link",
+      "label": "Buton 1 — link"
+    },
+    {
+      "type": "text",
+      "id": "btn2_text",
+      "label": "Buton 2 — text",
+      "default": "Vezi ofertele"
+    },
+    {
+      "type": "url",
+      "id": "btn2_link",
+      "label": "Buton 2 — link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}

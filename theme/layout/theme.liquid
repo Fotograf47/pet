@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e8650a">
+
+  <title>
+    {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}
+    {% if current_page != 1 %} &ndash; Pagina {{ current_page }}{% endif %}
+    {% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% render 'meta-tags' %}
+
+  {% if settings.favicon %}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {% endif %}
+
+  <!-- CSS temă petshop-constanta.ro -->
+  {{ 'petshop-theme.css' | asset_url | stylesheet_tag }}
+
+  <!-- Variabile CSS globale -->
+  <style>
+    :root {
+      --color-primary: {{ settings.color_primary | default: '#e8650a' }};
+      --color-secondary: {{ settings.color_secondary | default: '#1a3c5e' }};
+      --color-text: {{ settings.color_text | default: '#222222' }};
+      --color-bg: {{ settings.color_bg | default: '#ffffff' }};
+      --color-border: {{ settings.color_border | default: '#e5e5e5' }};
+      --font-body: {{ settings.font_body.family | default: '-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif' }};
+      --font-heading: {{ settings.font_heading.family | default: '-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif' }};
+    }
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      background: var(--color-bg);
+      margin: 0;
+      overflow-x: hidden;
+    }
+    .page-width {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+  </style>
+
+  <!-- Preconnect către domenii terțe folosite de analytics -->
+  {% if settings.gtm_id != blank %}
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+  {% endif %}
+  {% if settings.ga4_id != blank %}
+    <link rel="preconnect" href="https://www.google-analytics.com">
+  {% endif %}
+  {% if settings.meta_pixel_id != blank %}
+    <link rel="preconnect" href="https://connect.facebook.net">
+  {% endif %}
+
+  <!-- Analytics & Tracking (GA4, Meta Pixel, GTM) -->
+  {% render 'analytics-head' %}
+
+  {{ content_for_header }}
+
+  {% comment %}
+    JSON-LD: Organization — o singură dată, sitewide. Return policy reflectă politica reală (14 zile, cost retur suportat de client).
+  {% endcomment %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Organization",
+    "name": "Petshop Constanța",
+    "url": {{ shop.url | json }},
+    {% if settings.logo != blank %}"logo": {{ settings.logo | image_url: width: 600 | prepend: "https:" | json }},{% endif %}
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "RO",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 14,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/ReturnShippingFees"
+    }
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- GDPR Cookie Consent -->
+  {% render 'gdpr-consent' %}
+
+  <!-- HEADER -->
+  {% section 'header' %}
+
+  <!-- CONȚINUT PAGINĂ -->
+  <main id="MainContent" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  <!-- FOOTER -->
+  {% section 'footer' %}
+
+  <!-- Cart Drawer AJAX -->
+  {% render 'cart-drawer' %}
+
+  <!-- Script global coș AJAX -->
+  <script>
+    // Actualizează numărul de produse din coș în header
+    function updateCartCount() {
+      fetch('/cart.js')
+        .then(r => r.json())
+        .then(cart => {
+          const el = document.getElementById('cart-count');
+          if (el) el.textContent = cart.item_count;
+        });
+    }
+
+    // Adaugă în coș prin AJAX (folosit din product-card și product-page)
+    // btn (opțional): elementul buton pentru feedback vizual (text/disabled)
+    async function addToCart(variantId, quantity, btn) {
+      quantity = (typeof quantity === 'number' && quantity > 0) ? quantity : 1;
+      const original = btn ? btn.textContent : null;
+      if (btn) { btn.disabled = true; btn.textContent = 'Se adaugă...'; }
+
+      try {
+        const addRes = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: variantId, quantity: quantity })
+        });
+        if (!addRes.ok) {
+          const err = await addRes.json();
+          throw new Error(err.description || 'Eroare adăugare în coș');
+        }
+        const item = await addRes.json();
+
+        const cartRes = await fetch('/cart.js');
+        const cart = await cartRes.json();
+
+        updateCartCount();
+        if (window.CartDrawer) {
+          window.CartDrawer.render(cart);
+          window.CartDrawer.open();
+        }
+        if (typeof window.trackAddToCart === 'function') window.trackAddToCart(item);
+
+        if (btn) {
+          btn.textContent = '✓ Adăugat!';
+          setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 1500);
+        }
+        return item;
+      } catch (err) {
+        console.error('Eroare coș:', err);
+        if (btn) {
+          btn.textContent = 'Eroare';
+          setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 1500);
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
