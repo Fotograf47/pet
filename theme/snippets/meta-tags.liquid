@@ -1,0 +1,103 @@
+{% comment %}
+  META TAGS SEO — description, canonical, robots, Open Graph, Twitter Card, JSON-LD
+  Unde se pune: layout/theme.liquid, în <head>
+  {% render 'meta-tags' %}
+{% endcomment %}
+
+{%- liquid
+  assign seo_title = page_title | default: shop.name
+  assign seo_description = page_description | default: shop.description | strip_html | truncate: 160
+  assign seo_image = settings.share_image
+
+  if template contains 'product'
+    assign seo_description = product.description | strip_html | truncate: 160 | default: seo_description
+    assign seo_image = product.featured_image | default: seo_image
+  elsif template contains 'collection' and page_description == blank and collection.description != blank
+    assign seo_description = collection.description | strip_html | truncate: 160
+    assign seo_image = collection.image | default: seo_image
+  elsif template contains 'article' and article.excerpt != blank
+    assign seo_description = article.excerpt | strip_html | truncate: 160
+    assign seo_image = article.image | default: seo_image
+  endif
+-%}
+
+<meta name="description" content="{{ seo_description | escape }}">
+<link rel="canonical" href="{{ canonical_url }}">
+
+{%- if template contains 'customers' or template contains 'cart' or template == 'search' %}
+  <meta name="robots" content="noindex, nofollow">
+{%- elsif current_tags or current_page > 1 %}
+  <meta name="robots" content="noindex, follow">
+{%- else %}
+  <meta name="robots" content="index, follow">
+{%- endif %}
+
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:title" content="{{ seo_title | escape }}">
+<meta property="og:description" content="{{ seo_description | escape }}">
+<meta property="og:type" content="{% if template contains 'product' %}product{% else %}website{% endif %}">
+{%- if seo_image %}
+  <meta property="og:image" content="https:{{ seo_image | image_url: width: 1200 }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:secure_url" content="https:{{ seo_image | image_url: width: 1200 }}">
+{%- endif %}
+<meta property="og:locale" content="ro_RO">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ seo_title | escape }}">
+<meta name="twitter:description" content="{{ seo_description | escape }}">
+{%- if seo_image %}<meta name="twitter:image" content="https:{{ seo_image | image_url: width: 1200 }}">{%- endif %}
+
+{%- comment %}
+  JSON-LD: Organization + WebSite pe toate paginile, BreadcrumbList contextual.
+  Markup-ul Product NU se emite aici — sursa unică pentru schema Product + Offer
+  este sections/product-page.liquid (bloc complet, cu aggregateRating și shippingDetails).
+{% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": {{ shop.name | json }},
+      "url": {{ shop.url | json }},
+      "logo": "https:{{ settings.logo | default: 'petshop-constanta-sigla.avif' | asset_url }}",
+      "sameAs": [
+        {{ settings.social_facebook_link | default: '' | json }},
+        {{ settings.social_instagram_link | default: '' | json }},
+        {{ settings.social_tiktok_link | default: '' | json }},
+        {{ settings.social_youtube_link | default: '' | json }}
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "url": {{ shop.url | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ shop.url }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    {%- if template contains 'collection' and collection %},
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "{{ shop.url }}" },
+        { "@type": "ListItem", "position": 2, "name": {{ collection.title | json }}, "item": "{{ shop.url }}{{ collection.url }}" }
+      ]
+    }
+    {%- endif -%}
+    {%- if template contains 'product' and collection %},
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "{{ shop.url }}" },
+        { "@type": "ListItem", "position": 2, "name": {{ collection.title | json }}, "item": "{{ shop.url }}{{ collection.url }}" },
+        { "@type": "ListItem", "position": 3, "name": {{ product.title | json }}, "item": "{{ shop.url }}{{ product.url }}" }
+      ]
+    }
+    {%- endif %}
+  ]
+}
+</script>
