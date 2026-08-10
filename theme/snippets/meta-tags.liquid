@@ -61,6 +61,10 @@
 {%- else -%}
   {%- assign org_logo = 'petshop-constanta-sigla.avif' | asset_url | prepend: "https:" -%}
 {%- endif -%}
+{%- assign is_store_page = false -%}
+{%- if page.handle == 'contact' or page.handle == 'magazine' -%}
+  {%- assign is_store_page = true -%}
+{%- endif -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -99,6 +103,23 @@
         "query-input": "required name=search_term_string"
       }
     }
+    {%- if is_store_page %},
+    {
+      "@type": "PetStore",
+      "name": "Petshop Constanța",
+      "url": {{ shop.url | json }},
+      "image": {{ org_logo | json }},
+      "telephone": "+40749195004",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Strada Mircea cel Bătrân 144, MD7A",
+        "addressLocality": "Constanța",
+        "addressRegion": "Constanța",
+        "addressCountry": "RO"
+      }
+    }
+    {%- endif -%}
     {%- if template contains 'collection' and collection %},
     {
       "@type": "BreadcrumbList",
