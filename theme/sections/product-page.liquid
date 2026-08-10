@@ -3,7 +3,13 @@
   Randată prin templates/product.json (secțiune "product-page"), format OS 2.0.
 {% endcomment %}
 
-{% comment %} JSON-LD: Product + Offer — schema Google Merchant listing, per produs {% endcomment %}
+{% comment %}
+  JSON-LD: Product + Offer — schema Google Merchant listing, per produs.
+  shippingDetails oglindește zonele reale din Shopify Settings → Shipping:
+  CT 15 lei (gratuit ≥100 lei), TL 50 lei (gratuit ≥200 lei), fără livrare în restul țării.
+  Pragurile de gratuitate nu au proprietate schema.org on-page — se declară tariful standard;
+  condițiile le preia Merchant Center din setările de livrare sincronizate.
+{% endcomment %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org/",
@@ -34,16 +40,27 @@
     "price": {{ product.selected_or_first_available_variant.price | divided_by: 100.0 | json }},
     "availability": "https://schema.org/{% if product.selected_or_first_available_variant.available %}InStock{% else %}OutOfStock{% endif %}",
     "itemCondition": "https://schema.org/NewCondition",
-    "shippingDetails": {
-      "@type": "OfferShippingDetails",
-      "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "RON" },
-      "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "RO" },
-      "deliveryTime": {
-        "@type": "ShippingDeliveryTime",
-        "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" },
-        "transitTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY" }
+    "shippingDetails": [
+      {
+        "@type": "OfferShippingDetails",
+        "shippingRate": { "@type": "MonetaryAmount", "value": "15", "currency": "RON" },
+        "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "RO", "addressRegion": "CT" },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" },
+          "transitTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY" }
+        }
+      },
+      {
+        "@type": "OfferShippingDetails",
+        "shippingRate": { "@type": "MonetaryAmount", "value": "50", "currency": "RON" },
+        "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "RO", "addressRegion": "TL" },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" }
+        }
       }
-    }
+    ]
   }
 }
 </script>
