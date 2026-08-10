@@ -65,25 +65,9 @@
   {{ content_for_header }}
 
   {% comment %}
-    JSON-LD: Organization — o singură dată, sitewide. Return policy reflectă politica reală (14 zile, cost retur suportat de client).
+    JSON-LD Organization (inclusiv hasMerchantReturnPolicy) se emite o singură dată,
+    din snippets/meta-tags.liquid — nu adăuga alt bloc Organization aici.
   {% endcomment %}
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org/",
-    "@type": "Organization",
-    "name": "Petshop Constanța",
-    "url": {{ shop.url | json }},
-    {% if settings.logo != blank %}"logo": {{ settings.logo | image_url: width: 600 | prepend: "https:" | json }},{% endif %}
-    "hasMerchantReturnPolicy": {
-      "@type": "MerchantReturnPolicy",
-      "applicableCountry": "RO",
-      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-      "merchantReturnDays": 14,
-      "returnMethod": "https://schema.org/ReturnByMail",
-      "returnFees": "https://schema.org/ReturnShippingFees"
-    }
-  }
-  </script>
 </head>
 
 <body>

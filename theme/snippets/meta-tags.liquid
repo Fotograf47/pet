@@ -51,9 +51,16 @@
 
 {%- comment %}
   JSON-LD: Organization + WebSite pe toate paginile, BreadcrumbList contextual.
-  Markup-ul Product NU se emite aici — sursa unică pentru schema Product + Offer
-  este sections/product-page.liquid (bloc complet, cu aggregateRating și shippingDetails).
+  Acesta e SINGURUL bloc Organization din temă (include hasMerchantReturnPolicy) —
+  nu duplica în theme.liquid. Markup-ul Product NU se emite aici — sursa unică pentru
+  schema Product + Offer este sections/product-page.liquid (bloc complet, cu
+  aggregateRating și shippingDetails).
 {% endcomment %}
+{%- if settings.logo != blank -%}
+  {%- assign org_logo = settings.logo | image_url: width: 600 | prepend: "https:" -%}
+{%- else -%}
+  {%- assign org_logo = 'petshop-constanta-sigla.avif' | asset_url | prepend: "https:" -%}
+{%- endif -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -62,13 +69,26 @@
       "@type": "Organization",
       "name": {{ shop.name | json }},
       "url": {{ shop.url | json }},
-      "logo": "https:{{ settings.logo | default: 'petshop-constanta-sigla.avif' | asset_url }}",
+      "logo": {{ org_logo | json }},
       "sameAs": [
-        {{ settings.social_facebook_link | default: '' | json }},
-        {{ settings.social_instagram_link | default: '' | json }},
-        {{ settings.social_tiktok_link | default: '' | json }},
-        {{ settings.social_youtube_link | default: '' | json }}
-      ]
+        {%- capture sameas_links -%}{{ settings.social_facebook_link }}||{{ settings.social_instagram_link }}||{{ settings.social_tiktok_link }}||{{ settings.social_youtube_link }}{%- endcapture -%}
+        {%- assign sameas_list = sameas_links | split: "||" -%}
+        {%- assign sameas_first = true -%}
+        {%- for social_link in sameas_list -%}
+          {%- if social_link != blank -%}
+            {%- unless sameas_first -%},{%- endunless -%}{{ social_link | json }}
+            {%- assign sameas_first = false -%}
+          {%- endif -%}
+        {%- endfor -%}
+      ],
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "RO",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 14,
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnFees": "https://schema.org/ReturnShippingFees"
+      }
     },
     {
       "@type": "WebSite",
