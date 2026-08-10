@@ -16,9 +16,9 @@
           "type": "store",
           "settings": {
             "name": "Petshop Constanța",
-            "address": "Strada Mircea cel Bătrân 144, MD7A, Constanța",
+            "address": "Strada Mircea cel Bătrân 144, MD7A, Constanța, 900943",
             "phone": "+40 749 195 004",
-            "hours": "Luni–Vineri: 09:00 – 20:00\nSâmbătă: 09:00 – 18:00\nDuminică: 10:00 – 16:00",
+            "hours": "Luni–Vineri: 09:00 – 19:00\nSâmbătă: 09:00 – 14:00\nDuminică: 09:00 – 12:00",
             "has_pickup": true
           }
         }

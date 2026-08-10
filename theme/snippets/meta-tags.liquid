@@ -116,8 +116,29 @@
         "streetAddress": "Strada Mircea cel Bătrân 144, MD7A",
         "addressLocality": "Constanța",
         "addressRegion": "Constanța",
+        "postalCode": "900943",
         "addressCountry": "RO"
-      }
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "19:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "14:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "09:00",
+          "closes": "12:00"
+        }
+      ]
     }
     {%- endif -%}
     {%- if template contains 'collection' and collection %},
