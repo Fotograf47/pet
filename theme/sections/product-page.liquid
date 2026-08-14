@@ -1,0 +1,383 @@
+{% comment %}
+  PAGINA DE PRODUS — Completă
+  Randată prin templates/product.json (secțiune "product-page"), format OS 2.0.
+{% endcomment %}
+
+{% comment %}
+  JSON-LD: Product + Offer — schema Google Merchant listing, per produs.
+  shippingDetails oglindește zonele reale din Shopify Settings → Shipping:
+  CT 15 lei (gratuit ≥100 lei), TL 50 lei (gratuit ≥200 lei), fără livrare în restul țării.
+  Pragurile de gratuitate nu au proprietate schema.org on-page — se declară tariful standard;
+  condițiile le preia Merchant Center din setările de livrare sincronizate.
+{% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | truncate: 5000 | json }},
+  "sku": {{ product.selected_or_first_available_variant.sku | json }},
+  "image": [
+    {% for image in product.images limit: 3 %}
+      {{ image | image_url: width: 1200 | prepend: "https:" | json }}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "brand": {
+    "@type": "Brand",
+    "name": {{ product.vendor | json }}
+  },
+  {% if product.metafields.judgeme.rating.value and product.metafields.judgeme.rating_count.value > 0 %}
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": {{ product.metafields.judgeme.rating.value | json }},
+    "reviewCount": {{ product.metafields.judgeme.rating_count.value | json }}
+  },
+  {% endif %}
+  "offers": {
+    "@type": "Offer",
+    "url": {{ shop.url | append: product.url | json }},
+    "priceCurrency": {{ cart.currency.iso_code | json }},
+    "price": {{ product.selected_or_first_available_variant.price | divided_by: 100.0 | json }},
+    "availability": "https://schema.org/{% if product.selected_or_first_available_variant.available %}InStock{% else %}OutOfStock{% endif %}",
+    "itemCondition": "https://schema.org/NewCondition",
+    "shippingDetails": [
+      {
+        "@type": "OfferShippingDetails",
+        "shippingRate": { "@type": "MonetaryAmount", "value": "15", "currency": "RON" },
+        "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "RO", "addressRegion": "CT" },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" },
+          "transitTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY" }
+        }
+      },
+      {
+        "@type": "OfferShippingDetails",
+        "shippingRate": { "@type": "MonetaryAmount", "value": "50", "currency": "RON" },
+        "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "RO", "addressRegion": "TL" },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" },
+          "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 2, "unitCode": "DAY" }
+        }
+      }
+    ]
+  }
+}
+</script>
+
+<div class="product-page page-width">
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Acasă</a>
+    {% if collection %}
+      <span class="breadcrumb__sep">›</span>
+      <a href="{{ collection.url }}">{{ collection.title }}</a>
+    {% endif %}
+    <span class="breadcrumb__sep">›</span>
+    <span>{{ product.title }}</span>
+  </nav>
+
+  <div class="product-page__layout">
+
+    <!-- Galerie imagini -->
+    <div class="product-gallery">
+      <div class="product-gallery__main">
+        <img
+          id="main-product-image"
+          src="{{ product.featured_image | image_url: width: 800, height: 800, crop: 'center' }}"
+          srcset="
+            {{ product.featured_image | image_url: width: 400, height: 400, crop: 'center' }} 400w,
+            {{ product.featured_image | image_url: width: 600, height: 600, crop: 'center' }} 600w,
+            {{ product.featured_image | image_url: width: 800, height: 800, crop: 'center' }} 800w,
+            {{ product.featured_image | image_url: width: 1200, height: 1200, crop: 'center' }} 1200w
+          "
+          sizes="(min-width: 750px) 50vw, 100vw"
+          alt="{{ product.featured_image.alt | default: product.title | escape }}"
+          width="800"
+          height="800"
+          loading="eager"
+          fetchpriority="high"
+        >
+        {% if product.compare_at_price > product.price %}
+          {% assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+          <span class="gallery-discount-badge">-{{ discount }}%</span>
+        {% endif %}
+      </div>
+
+      {% if product.images.size > 1 %}
+        <div class="product-gallery__thumbs">
+          {% for image in product.images limit: 6 %}
+            <button
+              class="thumb-btn {% if forloop.first %}is-active{% endif %}"
+              onclick="setMainImage(this, '{{ image | image_url: width: 800, height: 800, crop: 'center' }}')"
+              aria-label="Imagine {{ forloop.index }} din {{ product.images.size }} pentru {{ product.title | escape }}"
+            >
+              <img src="{{ image | image_url: width: 120, height: 120, crop: 'center' }}" alt="{{ image.alt | default: product.title | escape }} {{ forloop.index }}" width="120" height="120" loading="lazy">
+            </button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Info produs -->
+    <div class="product-info">
+
+      <!-- Brand -->
+      {% assign brand_tag = product.tags | join: ',' | downcase %}
+      {% if product.vendor != blank %}
+        <a href="/collections/all?filter.p.vendor={{ product.vendor | url_encode }}" class="product-info__brand">
+          {{ product.vendor }}
+        </a>
+      {% endif %}
+
+      <!-- Titlu -->
+      <h1 class="product-info__title">{{ product.title }}</h1>
+
+      <!-- Badges -->
+      {% render 'product-badges', product: product %}
+
+      <!-- Rating real (Judge.me) — afișat DOAR dacă există recenzii reale, altfel ascuns complet -->
+      {% if product.metafields.judgeme.rating.value and product.metafields.judgeme.rating_count.value > 0 %}
+        <div class="product-info__rating">
+          {%- assign rating = product.metafields.judgeme.rating.value | round: 1 -%}
+          <span class="stars">
+            {%- for i in (1..5) -%}{%- if i <= rating -%}★{%- else -%}☆{%- endif -%}{%- endfor -%}
+          </span>
+          <span class="rating-count">({{ product.metafields.judgeme.rating_count.value }} recenzii)</span>
+        </div>
+      {% endif %}
+
+      <!-- Preț -->
+      <div class="product-info__price-block">
+        {% if product.compare_at_price > product.price %}
+          <span class="price-old">{{ product.compare_at_price | money }}</span>
+        {% endif %}
+        <span class="price-current" id="current-price">{{ product.selected_or_first_available_variant.price | money }}</span>
+        {% render 'price-per-unit', product: product, variant: product.selected_or_first_available_variant %}
+      </div>
+
+      <!-- Widget abonamente (Recharge) -->
+      {% render 'subscription-widget', product: product %}
+
+      <!-- Formular adăugare coș -->
+      {% form 'product', product, id: 'product-form' %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="variant-id">
+
+        <!-- Selector variante -->
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <div class="variant-selector">
+              <label class="variant-selector__label">
+                {{ option.name }}:
+                <strong id="selected-{{ option.position }}">{{ option.selected_value }}</strong>
+              </label>
+              <div class="variant-selector__options">
+                {% for value in option.values %}
+                  <button
+                    type="button"
+                    class="variant-btn {% if option.selected_value == value %}is-active{% endif %}"
+                    data-option-position="{{ option.position }}"
+                    data-value="{{ value }}"
+                    onclick="selectVariant(this)"
+                  >
+                    {{ value }}
+                  </button>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        {% endunless %}
+
+        <!-- Cantitate -->
+        <div class="quantity-block">
+          <label class="qty-label">Cantitate:</label>
+          <div class="qty-control">
+            <button type="button" onclick="changeQty(-1)" class="qty-btn">−</button>
+            <input type="number" name="quantity" value="1" min="1" id="qty-input" class="qty-input">
+            <button type="button" onclick="changeQty(1)" class="qty-btn">+</button>
+          </div>
+        </div>
+
+        <!-- Disponibilitate -->
+        <div class="stock-status" id="stock-status">
+          {% if product.selected_or_first_available_variant.available %}
+            <span class="in-stock"><span aria-hidden="true">✓</span> În stoc</span>
+          {% else %}
+            <span class="out-of-stock"><span aria-hidden="true">✗</span> Stoc epuizat</span>
+          {% endif %}
+        </div>
+
+        <!-- Buton coș -->
+        <button
+          type="submit"
+          class="btn btn--primary btn--full {% unless product.selected_or_first_available_variant.available %}btn--disabled{% endunless %}"
+          id="add-to-cart-btn"
+          {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+        >
+          {% if product.selected_or_first_available_variant.available %}
+            Adaugă în coș
+          {% else %}
+            Stoc epuizat
+          {% endif %}
+        </button>
+
+        <!-- Beneficii rapide -->
+        <div class="product-perks">
+          {% comment %} Mesaj sincronizat cu setarea reala din tema: settings.cart_cutoff_hour {% endcomment %}
+          {% assign cutoff_hour = settings.cart_cutoff_hour | default: 14 %}
+          {% assign current_hour = "now" | date: "%H" | plus: 0 %}
+          {% if current_hour < cutoff_hour %}
+            <div class="perk perk--same-day"><span aria-hidden="true">🚚</span> Comandă până la ora {{ cutoff_hour }}:00 și livrăm azi în Constanța</div>
+          {% else %}
+            <div class="perk"><span aria-hidden="true">🚚</span> Comandă acum, livrăm mâine</div>
+          {% endif %}
+          <div class="perk"><span aria-hidden="true">↩</span> 14 zile drept de retur</div>
+          <div class="perk"><span aria-hidden="true">🔒</span> Plată securizată</div>
+        </div>
+      {% endform %}
+
+      <!-- Widget fidelitate (Smile.io) -->
+      {% render 'loyalty-widget', product: product %}
+    </div>
+  </div>
+
+  <!-- Tab-uri descriere / ingrediente / mod de folosire -->
+  <div class="product-tabs">
+    <div class="product-tabs__nav">
+      <button class="tab-btn is-active" onclick="openTab(this, 'descriere')">Descriere</button>
+      <button class="tab-btn" onclick="openTab(this, 'ingrediente')">Ingrediente</button>
+      <button class="tab-btn" onclick="openTab(this, 'analiza')">Analiză</button>
+      <button class="tab-btn" onclick="openTab(this, 'utilizare')">Mod de utilizare</button>
+    </div>
+
+    <div class="tab-content is-active" id="tab-descriere">
+      <div class="rte">{{ product.description }}</div>
+    </div>
+
+    <div class="tab-content" id="tab-ingrediente">
+      <div class="rte">
+        {{ product.metafields.custom.ingrediente.value | default: 'Informații despre ingrediente indisponibile.' }}
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-analiza">
+      <div class="rte">
+        {{ product.metafields.custom.analiza_nutritionala.value | default: 'Analiza nutrițională indisponibilă.' }}
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-utilizare">
+      <div class="rte">
+        {{ product.metafields.custom.mod_utilizare.value | default: 'Instrucțiuni de utilizare indisponibile.' }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Recenzii Judge.me (o singură dată, aici) -->
+  {% render 'judge-reviews', product: product %}
+
+  <!-- Produse similare -->
+  {% if recommendations.products_count > 0 %}
+    <div class="related-products">
+      <h2 class="related-products__title">Produse similare</h2>
+      <div class="products-grid">
+        {% for rec in recommendations.products limit: 4 %}
+          {% render 'product-card', product: rec %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% render 'recently-viewed', current_product: product %}
+</div>
+
+<script>
+  // Adăugare AJAX în coș (fără reload) — deschide cart drawer
+  document.getElementById('product-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const variantId = document.getElementById('variant-id').value;
+    const quantity = parseInt(document.getElementById('qty-input').value, 10) || 1;
+    const btn = document.getElementById('add-to-cart-btn');
+    addToCart(variantId, quantity, btn);
+  });
+
+  // Galerie imagini
+  function setMainImage(btn, src) {
+    document.getElementById('main-product-image').src = src;
+    document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('is-active'));
+    btn.classList.add('is-active');
+  }
+
+  // Cantitate
+  function changeQty(delta) {
+    const input = document.getElementById('qty-input');
+    const newVal = Math.max(1, parseInt(input.value) + delta);
+    input.value = newVal;
+  }
+
+  // Selector variante
+  const productVariants = {{ product.variants | json }};
+
+  function selectVariant(btn) {
+    const position = btn.dataset.optionPosition;
+    const value = btn.dataset.value;
+
+    // Update buton activ
+    document.querySelectorAll(`[data-option-position="${position}"]`).forEach(b => b.classList.remove('is-active'));
+    btn.classList.add('is-active');
+
+    // Update label
+    document.getElementById(`selected-${position}`).textContent = value;
+
+    // Găsește varianta potrivită
+    const selectedOptions = [];
+    document.querySelectorAll('[data-option-position]').forEach(b => {
+      if (b.classList.contains('is-active')) {
+        selectedOptions[parseInt(b.dataset.optionPosition) - 1] = b.dataset.value;
+      }
+    });
+
+    const matchedVariant = productVariants.find(v =>
+      selectedOptions.every((opt, i) => v.options[i] === opt)
+    );
+
+    if (matchedVariant) {
+      document.getElementById('variant-id').value = matchedVariant.id;
+      const price = (matchedVariant.price / 100).toFixed(2).replace('.', ',') + ' lei';
+      document.getElementById('current-price').textContent = price;
+
+      const addBtn = document.getElementById('add-to-cart-btn');
+      const stockEl = document.getElementById('stock-status');
+
+      if (matchedVariant.available) {
+        addBtn.disabled = false;
+        addBtn.textContent = 'Adaugă în coș';
+        addBtn.classList.remove('btn--disabled');
+        stockEl.innerHTML = '<span class="in-stock"><span aria-hidden="true">✓</span> În stoc</span>';
+      } else {
+        addBtn.disabled = true;
+        addBtn.textContent = 'Stoc epuizat';
+        addBtn.classList.add('btn--disabled');
+        stockEl.innerHTML = '<span class="out-of-stock"><span aria-hidden="true">✗</span> Stoc epuizat</span>';
+      }
+    }
+  }
+
+  // Tab-uri
+  function openTab(btn, tabId) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('is-active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('is-active'));
+    btn.classList.add('is-active');
+    document.getElementById('tab-' + tabId).classList.add('is-active');
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Pagina Produs",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}
