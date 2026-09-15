@@ -99,12 +99,19 @@
   Pastilele NU primesc reguli noi — moștenesc .subcat-pill din tema existentă.
 {%- endcomment -%}
 <style>
-  .collections-index__group { margin-bottom: 2rem; }
-  .collections-index__group-title { font-size: 1.15rem; margin: 0 0 .75rem; }
+  /* Aliniat la .subcat-cards__grid (justify-content:center) din petshop-theme.css */
+  .collections-index__group { margin-bottom: 28px; }
+  .collections-index__group-title {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 12px;
+    color: var(--color-secondary);
+  }
   .collections-index__group-title a { color: inherit; text-decoration: none; }
-  .collections-index__group-title a:hover { text-decoration: underline; }
-  .collections-index__intro { margin-bottom: 1.5rem; }
-  .collections-index__pagination { margin-top: 1.5rem; }
+  .collections-index__group-title a:hover { color: var(--color-primary); }
+  .collections-index__intro { text-align: center; margin-bottom: 20px; }
+  .collections-index__pagination { text-align: center; margin-top: 20px; }
 </style>
 
 {% schema %}
