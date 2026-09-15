@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "collections-index": {
+      "type": "collections-list",
+      "settings": {
+        "title": "Toate categoriile",
+        "source": "menu",
+        "menu": "main-menu",
+        "show_parent_pill": true,
+        "dedupe": true,
+        "hide_empty": true,
+        "exclude_handles": "best-sellers-meta,frontpage"
+      }
+    }
+  },
+  "order": ["collections-index"]
+}

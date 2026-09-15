@@ -1,0 +1,174 @@
+{% comment %}
+  PAGINA /collections — PASTILE ORANGE (2026-09-15)
+
+  Problema rezolvată: tema nu avea deloc templates/list-collections.*, deci
+  Shopify randa fallback-ul default ("Product Collections" = <ul> nestilizat,
+  paginat 1..5, fără CSS de temă).
+
+  Design: reutilizează EXACT clasele pastilelor din sections/collection-subcategories
+  (.subcat-cards / .subcat-cards__grid / .subcat-pill), deci stilul orange vine
+  din assets/petshop-theme.css — zero CSS duplicat, zero drift vizual între
+  pagina de colecție și indexul de categorii.
+
+  Sursa de date (setting "source"):
+    - "menu" (default): structura meniului principal — părinte = grup, copiii =
+      pastile. Ține pagina curată: nu expune colecții de brand (Brit, Beaphar)
+      sau tehnice (Best Sellers Meta) ca subcategorii.
+    - "all": toate colecțiile publicate, cu excluderi pe handle.
+{% endcomment %}
+
+{%- liquid
+  assign heading = section.settings.title
+  assign menu = linklists[section.settings.menu]
+  assign excluded = section.settings.exclude_handles | downcase | replace: ' ', '' | split: ','
+-%}
+
+<section class="subcat-cards page-width collections-index">
+  {%- if heading != blank -%}
+    <h1 class="subcat-cards__title">{{ heading }}</h1>
+  {%- endif -%}
+
+  {%- if section.settings.intro != blank -%}
+    <div class="collections-index__intro rte">{{ section.settings.intro }}</div>
+  {%- endif -%}
+
+  {%- if section.settings.source == 'menu' and menu != blank -%}
+
+    {%- for link in menu.links -%}
+      {%- comment -%} Doar itemii de meniu care duc la colecții {%- endcomment -%}
+      {%- unless link.url contains '/collections/' -%}
+        {%- continue -%}
+      {%- endunless -%}
+
+      <div class="collections-index__group">
+        <h2 class="collections-index__group-title">
+          <a href="{{ link.url }}">{{ link.title | strip }}</a>
+        </h2>
+
+        <div class="subcat-cards__grid">
+          {%- if section.settings.show_parent_pill -%}
+            <a href="{{ link.url }}" class="subcat-pill">Toate — {{ link.title | strip }}</a>
+          {%- endif -%}
+
+          {%- comment -%}
+            Dedup pe URL: în main-menu există titluri diferite care trimit la
+            aceeași colecție (ex. 5 itemi Pisici → /collections/igiena-pisici).
+            Delimitatorul "|" evită match-uri false pe handle-uri cu prefix comun.
+          {%- endcomment -%}
+          {%- assign seen = '|' -%}
+          {%- for child in link.links -%}
+            {%- assign key = child.url | split: '?' | first -%}
+            {%- assign key_delim = key | prepend: '|' | append: '|' -%}
+            {%- if section.settings.dedupe and seen contains key_delim -%}
+              {%- continue -%}
+            {%- endif -%}
+            {%- assign seen = seen | append: key | append: '|' -%}
+            <a href="{{ child.url }}" class="subcat-pill{% if child.active %} is-active{% endif %}">{{ child.title | strip }}</a>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endfor -%}
+
+  {%- else -%}
+
+    {%- paginate collections by 60 -%}
+      <div class="subcat-cards__grid">
+        {%- for collection in collections -%}
+          {%- if excluded contains collection.handle -%}
+            {%- continue -%}
+          {%- endif -%}
+          {%- if section.settings.hide_empty and collection.all_products_count == 0 -%}
+            {%- continue -%}
+          {%- endif -%}
+          <a href="{{ collection.url }}" class="subcat-pill">{{ collection.title | strip }}</a>
+        {%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="collections-index__pagination" role="navigation" aria-label="Paginare categorii">
+          {{ paginate | default_pagination }}
+        </nav>
+      {%- endif -%}
+    {%- endpaginate -%}
+
+  {%- endif -%}
+</section>
+
+{%- comment -%}
+  Singurul CSS nou: titlurile de grup + spațierea între grupuri.
+  Pastilele NU primesc reguli noi — moștenesc .subcat-pill din tema existentă.
+{%- endcomment -%}
+<style>
+  .collections-index__group { margin-bottom: 2rem; }
+  .collections-index__group-title { font-size: 1.15rem; margin: 0 0 .75rem; }
+  .collections-index__group-title a { color: inherit; text-decoration: none; }
+  .collections-index__group-title a:hover { text-decoration: underline; }
+  .collections-index__intro { margin-bottom: 1.5rem; }
+  .collections-index__pagination { margin-top: 1.5rem; }
+</style>
+
+{% schema %}
+{
+  "name": "Index categorii (pastile)",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titlu pagină (H1)",
+      "default": "Toate categoriile"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Text intro (opțional)"
+    },
+    {
+      "type": "select",
+      "id": "source",
+      "label": "Sursa categoriilor",
+      "default": "menu",
+      "options": [
+        { "value": "menu", "label": "Meniu principal (grupat pe animal)" },
+        { "value": "all", "label": "Toate colecțiile din magazin" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "menu",
+      "label": "Handle meniu",
+      "default": "main-menu",
+      "info": "Folosit doar când sursa este „Meniu principal”. Trebuie să corespundă meniului din Header."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_parent_pill",
+      "label": "Adaugă pastila „Toate — <categorie>”",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "dedupe",
+      "label": "Elimină pastilele duplicate (același link)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_empty",
+      "label": "Ascunde colecțiile fără produse",
+      "default": true,
+      "info": "Folosit doar când sursa este „Toate colecțiile din magazin”."
+    },
+    {
+      "type": "text",
+      "id": "exclude_handles",
+      "label": "Handle-uri excluse",
+      "default": "best-sellers-meta,frontpage",
+      "info": "Separate prin virgulă. Folosit doar când sursa este „Toate colecțiile din magazin”."
+    }
+  ],
+  "presets": [
+    { "name": "Index categorii (pastile)" }
+  ]
+}
+{% endschema %}
