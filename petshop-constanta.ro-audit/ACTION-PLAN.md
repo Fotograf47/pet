@@ -2,13 +2,15 @@
 
 Ordonat după impact. Efort: S = sub o oră, M = câteva ore, L = zile.
 
-## Faza 1 — Săptămâna 1 (critic / ridicat)
+## Faza 1 — Săptămâna 1 (critic / ridicat) — ✅ rezolvată 26.11.2026
+
+Stare: tema „Preload hero fix 2026-11-26” e publicată (preîncărcarea se potrivește cu imaginea, 440 de titluri unice, Lighthouse mobil homepage 91–94, LCP 2,0–2,9 s). În plus: 49 de nume de produs scrise cu majuscule au fost rescrise (handle-urile neschimbate), 8 coduri de furnizor mutate în SKU, iar 2 produse Luger's duplicate au fost arhivate cu redirect 301.
 
 | # | Acțiune | Unde | Efort | Impact |
 |---|---|---|---|---|
-| 1 | Publicați copia de temă „Preload hero fix 2026-11-26” (deja pregătită și verificată). **Nu publicați tema din repo**: e mai veche decât tema activă | Shopify Admin → Online Store → Themes | S | Elimină descărcarea dublă a imaginii hero; LCP mai mic pe homepage |
-| 2 | Înlocuiți trunchierea la 42 de caractere a titlurilor de produs (blocul `<title>` din `layout/theme.liquid`) cu o regulă care păstrează diferențiatorul (aromă, gramaj, culoare, mărime) | Tema activă (cod) | S–M | Rezolvă cele 30 de grupuri de titluri duplicate (86 de produse) dintr-o singură modificare |
-| 3 | Corectați descrierea produsului Luger's vită & cartof 400g: subtitlurile H1 → H3 | Admin → produs → descriere | S | Un singur H1 pe pagină |
+| 1 | ✅ Publicați copia de temă „Preload hero fix 2026-11-26” (deja pregătită și verificată). **Nu publicați tema din repo**: e mai veche decât tema activă | Shopify Admin → Online Store → Themes | S | Elimină descărcarea dublă a imaginii hero; LCP mai mic pe homepage |
+| 2 | ✅ Înlocuiți trunchierea la 42 de caractere a titlurilor de produs (blocul `<title>` din `layout/theme.liquid`) cu o regulă care păstrează diferențiatorul (aromă, gramaj, culoare, mărime) | Tema activă (cod) | S–M | Rezolvă cele 30 de grupuri de titluri duplicate (86 de produse) dintr-o singură modificare |
+| 3 | ✅ Corectați descrierea produsului Luger's vită & cartof 400g: subtitlurile H1 → H3 | Admin → produs → descriere | S | Un singur H1 pe pagină |
 
 ## Faza 2 — Săptămânile 2–3 (impact ridicat)
 

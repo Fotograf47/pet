@@ -2,7 +2,16 @@
 
 **Data:** 26 noiembrie 2026 · **Metodă:** crawl live al tuturor URL-urilor din sitemap (509 pagini HTML), Lighthouse 12 local (mobil, throttling simulat), analiza codului temei din repo · **Tip business detectat:** e-commerce + magazin local fizic (PetStore, Constanța)
 
-## Scor de sănătate SEO: 74 / 100
+## Stare după corecții (26.11.2026, seara)
+
+- Tema „Preload hero fix 2026-11-26” e publicată. Imaginea hero se descarcă o singură dată; Lighthouse mobil live pe homepage: 91–94 (LCP 2,0–2,9 s), față de 71 (4,6 s) la audit.
+- Titlurile de produs nu mai sunt tăiate la 42 de caractere: 440 de titluri unice, fără duplicate.
+- 49 de nume de produs scrise cu majuscule au fost rescrise; 8 coduri de furnizor au fost mutate în SKU.
+- Produsele Luger's duplicate (vită & cartof 400g, vițel 400g) au fost arhivate, cu redirect 301 spre produsul păstrat. Descrierea produsului vită & cartof are acum un singur H1.
+
+Restul constatărilor de mai jos (conținut, GTIN, blog, colecții) rămân valabile.
+
+## Scor de sănătate SEO: 74 / 100 (la momentul auditului)
 
 | Categorie | Pondere | Scor |
 |---|---|---|
@@ -19,7 +28,7 @@ Fundația tehnică e solidă: toate cele 509 pagini răspund 200, fără redirec
 ### Top 5 probleme
 
 1. **86 de pagini de produs împart 30 de titluri duplicate**, multe trunchiate în mijlocul frazei (ex. 13 conserve Luger's au toate titlul „Luger's Hrană Umedă Conservă Câini cu – Petshop Constanța”). *Corectat 26.11:* cauza e tema activă, care taie automat `product.title` la 42 de caractere (`layout/theme.liquid`, blocul `<title>`), așa că variantele aceluiași produs ajung la același titlu. Se repară dintr-o singură modificare în temă, nu produs cu produs.
-2. **Imaginea hero de pe homepage se descarcă de două ori.** *Corectat 26.11:* `srcset`-ul imaginii e corect (550/750/950/1200/1248w); constatarea inițială despre un `srcset` defect venea dintr-o afișare trunchiată. Problema reală: preîncărcarea din `<head>` folosea URL-uri fixe de pe `cdn.shopify.com`, care nu se potriveau cu imaginea servită de pe `www.petshop-constanta.ro/cdn/shop`, deci browserul descărca o variantă inutilă și găsea imaginea reală abia în `<body>`. Reparat în copia de temă „Preload hero fix 2026-11-26” (nepublicată).
+2. **Imaginea hero de pe homepage se descarcă de două ori.** *Corectat 26.11:* `srcset`-ul imaginii e corect (550/750/950/1200/1248w); constatarea inițială despre un `srcset` defect venea dintr-o afișare trunchiată. Problema reală: preîncărcarea din `<head>` folosea URL-uri fixe de pe `cdn.shopify.com`, care nu se potriveau cu imaginea servită de pe `www.petshop-constanta.ro/cdn/shop`, deci browserul descărca o variantă inutilă și găsea imaginea reală abia în `<body>`. Reparat în copia de temă „Preload hero fix 2026-11-26”, publicată ulterior.
 3. **LCP pe pagina principală 4,6 s (mobil, laborator)** — scor performanță 71. Cauza principală e preîncărcarea greșită de mai sus (45% din LCP e „load delay”). Colecțiile sunt rapide (96, LCP 1,9 s), produsele acceptabile (80, LCP 3,9 s).
 4. **Blogul e practic gol**: un singur articol; `/blogs/ghiduri` are 8 cuvinte; ambele bloguri au același titlu („Blog Îngrijire Animale – Petshop Constanța”).
 5. **17 colecții au sub 120 de cuvinte** de conținut propriu (ex. hrană pești, accesorii pești, suplimente rozătoare/păsări) — prea puțin context pentru a se clasa pe interogările de categorie.
