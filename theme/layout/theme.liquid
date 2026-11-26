@@ -65,23 +65,41 @@
   {{ content_for_header }}
 
   {% comment %}
-    JSON-LD: Organization — o singură dată, sitewide. Return policy reflectă politica reală (14 zile, cost retur suportat de client).
+    JSON-LD: Organization + WebSite — o singură dată, sitewide, ca @graph legat prin @id.
+    Return policy reflectă politica reală (14 zile, cost retur suportat de client).
+    Google cere proprietatea "returnPolicyCountry" (nu "applicableCountry")
+    pentru politica de retur la nivel de Organization, din martie 2025 —
+    vezi audit SEO (AUDIT-SEO.md) pentru detalii.
+    Logo-ul cade pe aceeași siglă din assets ca fallback din header.liquid,
+    ca schema să aibă mereu un logo chiar dacă nu e setat settings.logo.
   {% endcomment %}
   <script type="application/ld+json">
   {
     "@context": "https://schema.org/",
-    "@type": "Organization",
-    "name": "Petshop Constanța",
-    "url": {{ shop.url | json }},
-    {% if settings.logo != blank %}"logo": {{ settings.logo | image_url: width: 600 | prepend: "https:" | json }},{% endif %}
-    "hasMerchantReturnPolicy": {
-      "@type": "MerchantReturnPolicy",
-      "applicableCountry": "RO",
-      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-      "merchantReturnDays": 14,
-      "returnMethod": "https://schema.org/ReturnByMail",
-      "returnFees": "https://schema.org/ReturnShippingFees"
-    }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": {{ shop.url | append: "/#organization" | json }},
+        "name": "Petshop Constanța",
+        "url": {{ shop.url | json }},
+        "logo": {% if settings.logo != blank %}{{ settings.logo | image_url: width: 600 | prepend: "https:" | json }}{% else %}{{ 'petshop-constanta-sigla.avif' | asset_url | json }}{% endif %},
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "returnPolicyCountry": "RO",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+          "merchantReturnDays": 14,
+          "returnMethod": "https://schema.org/ReturnByMail",
+          "returnFees": "https://schema.org/ReturnShippingFees"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": {{ shop.url | append: "/#website" | json }},
+        "name": {{ shop.name | json }},
+        "url": {{ shop.url | json }},
+        "publisher": { "@id": {{ shop.url | append: "/#organization" | json }} }
+      }
+    ]
   }
   </script>
 </head>
