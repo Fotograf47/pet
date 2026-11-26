@@ -1,0 +1,227 @@
+# Liste detaliate (crawl 2026-11-26, 509 pagini HTML)
+
+## Titluri duplicate (30 grupuri, 86 pagini)
+
+- **Luger's Hrană Umedă Conservă Câini cu – Petshop Constanța** (13)
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-curcan-broccoli-800g`
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-vitel-morcov-800g`
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-iepure-merisor-800g`
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-inimi-de-pui-morcov-800g`
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-mistret-dovleac-800g`
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-inimi-de-gasca-broccoli-800g`
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-mistret-dovleac-400g`
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-iepure-merisor-400g`
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-inimi-de-gasca-broccoli-400g`
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-inimi-de-pui-morcov-400g`
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-muschi-de-porc-cartof-400g`
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-curcan-broccoli-400g`
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-vitel-morcov-400g`
+- **CULCUS TEXTIL PENTRU CAINI SI PISICI – Petshop Constanța** (11)
+  - `/products/culcus-textil-pentru-caini-si-pisici-taurus-1-geo-blue-32x42x18-cm`
+  - `/products/culcus-textil-pentru-caini-si-pisici-taurus-1-mix-colours-32x42x18-cm`
+  - `/products/culcus-textil-pentru-caini-si-pisici-taurus-1-blue-grey-32x42x18-60002892`
+  - `/products/culcus-textil-pentru-caini-si-pisici-taurus-1-pink-32x42x18-60002892`
+  - `/products/culcus-textil-pentru-caini-si-pisici-taurus-1-purple-32x42x18-60002892`
+  - `/products/culcus-textil-pentru-caini-si-pisici-taurus-2-mix-colours-38x54x18-cm`
+  - `/products/culcus-textil-pentru-caini-si-pisici-taurus-2-pink-38x54x18-60002893`
+  - `/products/culcus-textil-pentru-caini-si-pisici-taurus-2-purple-38x54x18-60002893`
+  - `/products/culcus-textil-pentru-caini-si-pisici-taurus-2-red-38x54x18-cm`
+  - `/products/culcus-textil-pentru-caini-si-pisici-taurus-1-geo-viola-32x42x18-cm`
+  - `/products/culcus-textil-pentru-caini-si-pisici-taurus-3-mix-colours-51x61x20-cm`
+- **Tropical Supervit Granulat – Hrană Granule – Petshop Constanța** (4)
+  - `/products/tropical-supervit-granulat-100ml-55gr`
+  - `/products/tropical-supervit-granulat-250ml-138gr-t60414`
+  - `/products/tropical-supervit-granulat-5l-2-75kg-t60418`
+  - `/products/tropical-supervit-granulat-10gr`
+- **Luger's Hrană Umedă Conservă Pisici cu – Petshop Constanța** (4)
+  - `/products/lugers-hrana-umeda-conserva-pisici-cu-inimi-de-rata-400g`
+  - `/products/lugers-hrana-umeda-conserva-pisici-cu-vita-creveti-400g`
+  - `/products/lugers-hrana-umeda-conserva-pisici-cu-pastrav-sardina-400g`
+  - `/products/lugers-hrana-umeda-conserva-pisici-cu-peste-alb-400g`
+- **Tropical Supervit Mini Granulat – Hrană – Petshop Constanța** (3)
+  - `/products/tropical-supervit-mini-granulat-100ml-55gr`
+  - `/products/hrana-de-baza-pentru-pesti-si-crustacee-tropical-supervit-mini-granulat-250-ml-162-5-g`
+  - `/products/tropical-supervit-mini-granulat-10gr`
+- **HRANA UMEDA PENTRU CAINI PREMIUM PROLIFE – Petshop Constanța** (3)
+  - `/products/hrana-umeda-pentru-caini-premium-prolife-dog-puppy-medium-large-smart-pui-orez-cv-400gr`
+  - `/products/hrana-umeda-pentru-caini-premium-prolife-dog-adult-smart-medium-large-pui-orez-cv-400g`
+  - `/products/hrana-umeda-pentru-caini-premium-prolife-dog-adult-medium-large-smart-vita-orez-cv-400gr`
+- **Versele-Laga Classic Oke Variety – Hrană – Petshop Constanța** (2)
+  - `/products/hrana-uscata-pentru-pisici-versele-laga-classic-oke-variety-4-kg`
+  - `/products/hrana-uscata-pentru-pisici-versele-laga-classic-oke-variety-10-kg`
+- **Chicopee HNL Urinary – Hrană Uscată Pisici – Petshop Constanța** (2)
+  - `/products/hrana-uscata-pentru-pisici-super-premium-chicopee-hnl-urinary-8kg`
+  - `/products/hrana-uscata-pentru-pisici-super-premium-chicopee-hnl-urinary-1-5kg`
+- **HRANA USCATA PENTRU PISICI WILLOWY GOLD – Petshop Constanța** (2)
+  - `/products/hrana-uscata-pentru-pisici-willowy-gold-cats-sterilized-10kg`
+  - `/products/hrana-uscata-pentru-pisici-willowy-gold-kitten-10kg`
+- **Versele-Laga Prestige Premium Păsări – Petshop Constanța** (2)
+  - `/products/hrana-pentru-pasari-exotice-premium-prestige-versele-laga-800gr-421512`
+  - `/products/hrana-pentru-pasari-exotice-premium-prestige-versele-laga-20kg`
+- **Versele-Laga Crispy Muesli Iepuri – Hrană – Petshop Constanța** (2)
+  - `/products/vl-crispy-iepuri-20kg`
+  - `/products/vl-crispy-iepuri-1kg`
+- **Versele-Laga Crispy Muesli Hamsteri & Co – Petshop Constanța** (2)
+  - `/products/vl-crispy-hamsteri-si-co-20-kg`
+  - `/products/vl-crispy-hamsteri-co-1kg`
+- **Versele-Laga Nature Cuni – Hrană Iepuri – Petshop Constanța** (2)
+  - `/products/vl-nature-iepuri-9kg-461404`
+  - `/products/vl-nature-iepuri-700g-448`
+- **Ola Hrană Completă Porcușori de Guineea – Petshop Constanța** (2)
+  - `/products/hrana-completa-ola-pentru-porcusori-de-guineea-800g`
+  - `/products/hrana-completa-ola-pentru-porcusori-de-guineea-20kg`
+- **Ham Câini Click din Nylon, Portocaliu – Petshop Constanța** (2)
+  - `/products/ham-pentru-caini-3x-ajustabil-nylon-orange-reflectorizant-click-10mm-22-40cm`
+  - `/products/ham-pentru-caini-3x-ajustabil-nylon-orange-reflectorizant-click-15mm-30-50cm`
+- **Ham Câini Click din Nylon, Albastru – Petshop Constanța** (2)
+  - `/products/ham-pentru-caini-3x-ajustabil-nylon-blue-click-10-mm-22-40-cm`
+  - `/products/ham-pentru-caini-3x-ajustabil-nylon-blue-click-15-mm-30-50-cm`
+- **Tropical Gammarus – Hrană Pești și Broaște – Petshop Constanța** (2)
+  - `/products/tropical-gammarus-12gr-plic`
+  - `/products/tropical-gammarus-100ml-12gr`
+- **Tropical Dafnia Natural – Hrană Pești – Petshop Constanța** (2)
+  - `/products/tropical-dafnia-natural-12g-plic`
+  - `/products/tropical-dafnia-natural-100ml-18gr`
+- **Tropical Dafnia Vitaminizată – Hrană – Petshop Constanța** (2)
+  - `/products/tropical-dafnia-vitaminizat-12gr-plic`
+  - `/products/tropical-dafnia-vitaminizat-100ml-16gr`
+- **Tropical Biorept Soft Supreme – Hrană – Petshop Constanța** (2)
+  - `/products/hrana-pentru-broaste-testoase-si-pesti-tropical-biorept-soft-supreme-100ml-36g`
+  - `/products/hrana-pentru-broaste-testoase-si-pesti-tropical-biorept-soft-supreme-250ml-90g`
+- **Tropical Granulat – Hrană Granule Pești – Petshop Constanța** (2)
+  - `/products/tropical-granulat-100ml-50gr`
+  - `/products/tropical-granulat-20gr`
+- **Tropical Super Spirulina Forte Chips – Petshop Constanța** (2)
+  - `/products/tropical-super-spirulina-forte-chips-100ml-52gr`
+  - `/products/tropical-super-spirulina-forte-chips-250ml-130gr-t60574`
+- **HRANA UMEDA PENTRU CAINI PROLIFE DOG ADULT – Petshop Constanța** (2)
+  - `/products/hrana-umeda-pentru-caini-premium-prolife-dog-adult-medium-large-sensitive-ren-cartof-cv-400gr`
+  - `/products/hrana-umeda-pentru-caini-premium-prolife-dog-adult-sensitive-medium-large-iepure-cartof-400gr-39681`
+- **Luger's Hrană Umedă Conservă Pisici – Petshop Constanța** (2)
+  - `/products/lugers-hrana-umeda-conserva-pisici-sterilizate-cu-vita-inimi-de-pui-400g`
+  - `/products/lugers-hrana-umeda-conserva-pisici-sterilizate-cu-somon-ton-400g`
+- **Luger's Hrană Umedă Conservă Câini cu Ren – Petshop Constanța** (2)
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-ren-morcov-800g`
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-ren-morcov-400g`
+- **Luger's Hrană Umedă Conservă Câini cu Vită – Petshop Constanța** (2)
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-vita-cartof-800g`
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-vita-cartof-400g-1`
+- **Luger's Hrană Umedă Conservă Câini cu Cod – Petshop Constanța** (2)
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-cod-macrou-800g`
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-cod-macrou-400g`
+- **Luger's Hrană Umedă Conservă Câini cu Miel – Petshop Constanța** (2)
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-miel-morcov-800g`
+  - `/products/lugers-hrana-umeda-conserva-caini-cu-miel-morcov-400g`
+- **Vivo Adult Miel si Orez - Hrana Caini – Petshop Constanța** (2)
+  - `/products/vivo-adult-miel-si-orez-hrana-caini-talie-medie-si-mare`
+  - `/products/vivo-adult-miel-si-orez-hrana-caini-talie-mica-si-mini`
+- **Blog Îngrijire Animale – Petshop Constanța** (2)
+  - `/blogs/news`
+  - `/blogs/ghiduri`
+
+## Meta descrieri duplicate (10 grupuri, 25 pagini)
+
+- „Culcuș moale și confortabil potrivit pentru câini și pisici. Oferă o suprafață de ședere comodă pentru relaxar…” (6): `/products/culcus-textil-pentru-caini-si-pisici-taurus-1-geo-blue-32x42x18-cm`, `/products/culcus-textil-pentru-caini-si-pisici-taurus-1-mix-colours-32x42x18-cm`, `/products/culcus-textil-pentru-caini-si-pisici-taurus-2-mix-colours-38x54x18-cm`, `/products/culcus-textil-pentru-caini-si-pisici-taurus-2-red-38x54x18-cm`, `/products/culcus-textil-pentru-caini-si-pisici-taurus-1-geo-viola-32x42x18-cm`, `/products/culcus-textil-pentru-caini-si-pisici-taurus-3-mix-colours-51x61x20-cm`
+- „Petshop online Constanța cu hrană premium pentru câini și pisici, accesorii și jucării. Livrare în Constanța,N…” (3): `/`, `/blogs/news`, `/blogs/ghiduri`
+- „HRANĂ USCATĂ PENTRU PISICI VERSELE LAGA CLASSIC OKE VARIETYCompoziție:cereale, derivați din carne, derivați de…” (2): `/products/hrana-uscata-pentru-pisici-versele-laga-classic-oke-variety-4-kg`, `/products/hrana-uscata-pentru-pisici-versele-laga-classic-oke-variety-10-kg`
+- „DENUMIREA PRODUSULUIVL CRISPY IEPURI Prezentare produs Gustoase și bogate in fibre, Crispy Musli pentru iepuri…” (2): `/products/vl-crispy-iepuri-20kg`, `/products/vl-crispy-iepuri-1kg`
+- „GEANTĂ PENTRU TRANSPORT CÂINI FLAMINGO SMART TOP PLUS Este o geantă portabilă pentru transportul câinilor de d…” (2): `/products/geanta-de-transport-pentru-caini-flamingo-smart-top-plus-46x36x41cm`, `/products/geanta-de-transport-pentru-caini-flamingo-smart-top-plus-64x46x53cm`
+- „DENUMIREA PRODUSULUI CARABINIERA Carabiniera clip de calitate, din metal, va permite sa atasati usor si rapid …” (2): `/products/carabiniera-medie-pentru-caini`, `/products/carabiniera-mare-pentru-caini-1x86mm`
+- „DENUMIREA PODUSULUIHAM 3 X AJUSTABIL NYLON ORANGE REFLECTORIZANT CLICK Ham de culoare orange, foarte rezistent…” (2): `/products/ham-pentru-caini-3x-ajustabil-nylon-orange-reflectorizant-click-10mm-22-40cm`, `/products/ham-pentru-caini-3x-ajustabil-nylon-orange-reflectorizant-click-15mm-30-50cm`
+- „DENUMIREA PRODUSULUITROPICAL DAFNIA NATURAL -Crustacee uscate - dafnia, Gammarus si creveti naturali, produse …” (2): `/products/tropical-dafnia-natural-12g-plic`, `/products/tropical-dafnia-natural-100ml-18gr`
+- „Hrană cu adaos de probiotic pentru țestoase acvatice și semiacvatice tinere și în creștere din speciile Maurem…” (2): `/products/hrana-pentru-broaste-testoase-si-pesti-tropical-biorept-soft-supreme-100ml-36g`, `/products/hrana-pentru-broaste-testoase-si-pesti-tropical-biorept-soft-supreme-250ml-90g`
+- „DENUMIREA PRODUSULUIBIO DOG CURCAN &amp;amp; RATA Hrana completa pentru caini.Compozitie: carne, pui, curcan s…” (2): `/products/hrana-umeda-pentru-caini-biodog-curcan-rata-1250gr-12buc-bax`, `/products/hrana-umeda-pentru-caini-biodog-curcan-rata-410gr-24buc-bax`
+
+## Titluri > 65 caractere (10) — primele 25
+
+- 89 car. `/collections/accesorii-pasari-1`
+- 80 car. `/pages/intrebari-frecvente`
+- 76 car. `/pages/pisica-bea-putina-apa`
+- 76 car. `/pages/petshop-cernavoda`
+- 75 car. `/pages/petshop-navodari`
+- 75 car. `/pages/petshop-medgidia`
+- 75 car. `/pages/petshop-mangalia`
+- 73 car. `/pages/petshop-tulcea`
+- 72 car. `/collections/tail-swingers-recompense-caini`
+- 72 car. `/collections/completeaza-cosul`
+
+## Colecții cu conținut subțire (<120 cuvinte în `main`) (17)
+
+- 58 cuvinte `/collections/accesorii-pasari`
+- 58 cuvinte `/collections/accesorii-pești`
+- 58 cuvinte `/collections/acvarii-pești`
+- 60 cuvinte `/collections/hrana-pesti-acvariu`
+- 60 cuvinte `/collections/hrana-pesti-iaz`
+- 60 cuvinte `/collections/suplimente-nutritive-pasari`
+- 62 cuvinte `/collections/recompense-si-batoane-pasari`
+- 62 cuvinte `/collections/recompense-si-batoane-rozatoare`
+- 76 cuvinte `/collections/cazone`
+- 77 cuvinte `/collections/suplimente-nutritive-rozatoare`
+- 80 cuvinte `/collections/fermieri`
+- 81 cuvinte `/collections/brit`
+- 84 cuvinte `/collections/josera`
+- 85 cuvinte `/collections/purina`
+- 87 cuvinte `/collections/pachete-promotionale`
+- 94 cuvinte `/collections/hills-science-diet`
+- 115 cuvinte `/collections/kerbl`
+
+## Pagini cu număr de H1 ≠ 1
+
+- `/products/lugers-hrana-umeda-conserva-caini-cu-vita-cartof-400g` — 7 H1 (titlurile din descriere sunt formatate ca H1)
+
+## Pagini cu imagini fără alt
+
+- `/` — 2
+- `/products/hrana-umeda-pentru-pisici-figaro-cat-ficat-in-sos-conserva-415g` — 1
+- `/products/hrana-umeda-pentru-pisici-figaro-cat-pui-in-sos-conserva-415g` — 1
+- `/products/hrana-umeda-pentru-pisici-figaro-cat-peste-in-sos-conserva-415g` — 1
+- `/products/hrana-umeda-pentru-pisici-figaro-cat-vita-in-sos-conserva-415g` — 1
+- `/products/hrana-umeda-pentru-pisici-figaro-cat-vanat-in-sos-conserva-415g` — 1
+
+## Produse fără `sku` în schema Product (45)
+
+- `/products/hrana-uscata-pentru-pisici-versele-laga-classic-oke-variety-4-kg`
+- `/products/hrana-uscata-pentru-pisici-super-premium-chicopee-hnl-kitten-1-5kg`
+- `/products/hrana-uscata-pentru-pisici-super-premium-chicopee-cnl-castrate-poultry-1-5kg`
+- `/products/hrana-uscata-pentru-pisici-super-premium-chicopee-cnl-senior-best-age-poultry-1-5kg`
+- `/products/hrana-uscata-pentru-pisici-super-premium-chicopee-cnl-adult-sensible-lamb-1-5kg`
+- `/products/hrana-uscata-pentru-pisici-super-premium-chicopee-cnl-adult-beauty-salmon-1-5kg`
+- `/products/hrana-uscata-pentru-pisici-super-premium-chicopee-cnl-adult-indoor-beef-1-5kg`
+- `/products/hrana-uscata-pentru-pisici-super-premium-chicopee-cnl-junior-new-life-chicken-1-5kg`
+- `/products/hrana-uscata-pentru-pisici-super-premium-chicopee-hnl-no-grain-1-5kg`
+- `/products/hrana-uscata-pentru-pisici-super-premium-chicopee-hnl-hair-skin-1-5kg`
+- `/products/hrana-uscata-pentru-pisici-super-premium-chicopee-hnl-urinary-1-5kg`
+- `/products/hrana-uscata-pentru-pisici-super-premium-chicopee-hnl-sterilized-1-5kg`
+- `/products/biocat-plic-curcan-100g-pisici`
+- `/products/biocat-kitten-plic-pui-85g-pisoi`
+- `/products/biocat-plic-rata-100g-pisici`
+- `/products/biocat-plic-vita-100g-pisici`
+- `/products/hrana-umeda-pentru-pisici-super-premium-chicopee-kitten-vita-pui-vanat-pate-400g`
+- `/products/hrana-umeda-pentru-pisici-super-premium-chicopee-somon-pui-jeleu-400g`
+- `/products/hrana-umeda-pentru-pisici-super-premium-chicopee-pui-crabi-pate-400g`
+- `/products/hrana-umeda-chicopee-pui-vanat-pate-400g-pisici`
+- `/products/hrana-umeda-pentru-pisici-super-premium-chicopee-rata-pui-pate-400g`
+- `/products/biocat-plic-pui-ficat-100g-pisici`
+- `/products/biocat-plic-pui-85g-pisici-sterilizate`
+- `/products/hrana-pentru-pasari-exotice-premium-prestige-versele-laga-20kg`
+- `/products/suport-castron-din-inox-pentru-caini-flamingo-dinner-11cm`
+- `/products/castron-pentru-caini-si-pisici-tobias-inscriptionabil-cu-creta-flamingo-red-s-13cmx300ml`
+- `/products/rezervor-de-apa-portabil-pentru-caini-flamingo-gulliver-clasic-500ml`
+- `/products/castron-pentru-caini-din-inox-grey-lime-flamingo-14cmx400ml`
+- `/products/culcus-textil-pentru-caini-si-pisici-taurus-1-geo-blue-32x42x18-cm`
+- `/products/culcus-textil-pentru-caini-si-pisici-taurus-1-blue-grey-32x42x18-60002892`
+- `/products/culcus-textil-pentru-caini-si-pisici-taurus-1-geo-viola-32x42x18-cm`
+- `/products/ham-pentru-caini-3x-ajustabil-nylon-rosu-click-10mm-22-40cm`
+- `/products/ham-pentru-caini-3x-ajustabil-nylon-orange-reflectorizant-click-10mm-22-40cm`
+- `/products/ham-pentru-caini-3x-ajustabil-nylon-blue-click-10-mm-22-40-cm`
+- `/products/ham-pentru-caini-3x-ajustabil-nylon-mol-camuflaj-click-15mm-30-50cm-26001-150507`
+- `/products/botnita-pentru-caini-ajustabila-flamingo-l-nr-5-20-23cm`
+- `/products/botnita-pentru-caini-metal-milan-nr-5-ciobanesc-mic-10lx9lx10-5hcm`
+- `/products/botnita-pentru-caini-metal-milan-1-rottweiler-mic-9-5lx9-5lx12hcm`
+- `/products/hrana-uscata-premium-pentru-caini-de-talie-mica-golosi-probio-small-croc-7-5kg`
+- `/products/biodog-puppy-plic-pui-100g-catelusi`
+- `/products/hrana-umeda-pentru-caini-biodog-curcan-rata-410gr-24buc-bax`
+- `/products/hrana-umeda-pentru-caini-biodog-miel-1250gr-12buc-bax`
+- `/products/hrana-umeda-pentru-caini-biodog-pui-410gr-24buc-bax`
+- `/products/vivo-adult-vita-hrana-uscata-caini-toate-taliile`
+- `/products/royal-canin-fussy-hrana-uscata-pentru-pisici-adulte`

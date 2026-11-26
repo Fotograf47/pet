@@ -1,0 +1,223 @@
+{
+  "summary": {
+    "health_score": 74,
+    "business_type": "E-commerce + local brick-and-mortar (PetStore, Constanța)",
+    "pages_crawled": 509,
+    "date": "2026-11-26",
+    "top_findings": [
+      "86 product pages share 30 duplicate titles",
+      "Live theme differs from repo: broken hero srcset + duplicate preload",
+      "Homepage mobile LCP 4.6 s (lab)",
+      "Blog has a single article",
+      "17 collections under 120 words"
+    ],
+    "quick_wins": [
+      "Publish repo theme",
+      "Rewrite 30 duplicate product SEO titles",
+      "Shorten 121 titles >60 chars",
+      "Add GTIN to 344 products / SKU to 45",
+      "Fix 7 H1s on one Luger's product"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 90,
+      "what_works": [
+        "All 509 pages 200, no internal redirects",
+        "Canonical on every page",
+        "robots.txt + 6-part sitemap index",
+        "HTTPS + HSTS"
+      ],
+      "findings": [
+        {
+          "title": "Live theme differs from repo",
+          "severity": "High",
+          "description": "Hero srcset and preload in production differ from theme/sections/hero-banner.liquid",
+          "recommendation": "Publish the repo theme after preview check"
+        }
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 60,
+      "what_works": [
+        "Product descriptions with composition and feeding guides"
+      ],
+      "findings": [
+        {
+          "title": "Blog nearly empty",
+          "severity": "High",
+          "description": "1 article; /blogs/ghiduri has 8 words",
+          "recommendation": "Publish 2 guides/month"
+        },
+        {
+          "title": "Thin collections",
+          "severity": "Medium",
+          "description": "17 collections < 120 words",
+          "recommendation": "Add 100-200 word intros"
+        },
+        {
+          "title": "Duplicate meta descriptions",
+          "severity": "Low",
+          "description": "25 pages in 10 groups",
+          "recommendation": "Differentiate variant descriptions"
+        }
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 70,
+      "what_works": [
+        "Meta descriptions on 100% of pages",
+        "Exactly one H1 on 508/509 pages"
+      ],
+      "findings": [
+        {
+          "title": "Duplicate titles",
+          "severity": "High",
+          "description": "30 groups / 86 pages, several truncated mid-phrase",
+          "recommendation": "Add flavour/size/colour to SEO titles"
+        },
+        {
+          "title": "Long titles",
+          "severity": "Medium",
+          "description": "121 titles > 60 chars",
+          "recommendation": "Shorten"
+        },
+        {
+          "title": "Multiple H1",
+          "severity": "Low",
+          "description": "1 product with 7 H1",
+          "recommendation": "Use H3 in description"
+        }
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 85,
+      "what_works": [
+        "0 JSON-LD errors",
+        "Product+Offer+shipping+returns on 437/437",
+        "PetStore + FAQPage on homepage"
+      ],
+      "findings": [
+        {
+          "title": "Missing GTIN",
+          "severity": "Medium",
+          "description": "344/437 products without gtin",
+          "recommendation": "Fill Barcode field"
+        },
+        {
+          "title": "Missing SKU",
+          "severity": "Low",
+          "description": "45 products",
+          "recommendation": "Add SKU"
+        },
+        {
+          "title": "No ItemList on 16 collections",
+          "severity": "Low",
+          "description": "37/53 have ItemList",
+          "recommendation": "Extend collection schema"
+        }
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "score": 70,
+      "what_works": [
+        "CLS 0 everywhere",
+        "Collections perf 96"
+      ],
+      "findings": [
+        {
+          "title": "Homepage LCP 4.6 s",
+          "severity": "High",
+          "description": "45% of LCP is resource load delay on hero image",
+          "recommendation": "Publish repo theme (fixed srcset/preload)"
+        },
+        {
+          "title": "Main-thread JS",
+          "severity": "Medium",
+          "description": "4.0 s main thread, TBT 450 ms on homepage",
+          "recommendation": "Audit apps and pixels"
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "score": 60,
+      "what_works": [
+        "PetStore + FAQ schema with delivery facts"
+      ],
+      "findings": [
+        {
+          "title": "Little citable informational content",
+          "severity": "Medium",
+          "description": "Single blog article",
+          "recommendation": "Build guide content"
+        }
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 95,
+      "what_works": [
+        "6,846 images, only 7 without alt"
+      ],
+      "findings": [
+        {
+          "title": "Missing alt",
+          "severity": "Low",
+          "description": "7 images on 6 pages",
+          "recommendation": "Add alt text"
+        }
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: Critical Fixes",
+        "timeframe": "Week 1",
+        "items": [
+          "Publish repo theme",
+          "Rewrite 30 duplicate titles",
+          "Fix multi-H1 product"
+        ]
+      },
+      {
+        "name": "Phase 2: High-Impact Improvements",
+        "timeframe": "Weeks 2-3",
+        "items": [
+          "GTIN/SKU",
+          "Shorten long titles",
+          "Collection intros",
+          "Audit apps/pixels"
+        ]
+      },
+      {
+        "name": "Phase 3: Content & Authority",
+        "timeframe": "Month 2",
+        "items": [
+          "Editorial plan",
+          "Differentiate blog titles",
+          "Consolidate variant products",
+          "Reviews app"
+        ]
+      },
+      {
+        "name": "Phase 4: Monitoring & Iteration",
+        "timeframe": "Ongoing",
+        "items": [
+          "Re-run audit",
+          "Connect Search Console"
+        ]
+      }
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/"
+  }
+}
