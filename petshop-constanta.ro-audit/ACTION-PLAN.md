@@ -6,8 +6,8 @@ Ordonat după impact. Efort: S = sub o oră, M = câteva ore, L = zile.
 
 | # | Acțiune | Unde | Efort | Impact |
 |---|---|---|---|---|
-| 1 | Publicați tema din repo (branch `claude/petshop-constanta-mobile-perf-tv3grl`) pe magazinul live, după o verificare în preview | Shopify Admin → Online Store → Themes | S | Repară `srcset`-ul hero și preload-ul dublu; LCP homepage estimat sub 3 s |
-| 2 | Rescrieți cele 30 de titluri SEO duplicate (86 de produse) cu diferențiatorul: aromă, gramaj, culoare, mărime. Ex: „Luger's Conservă Câini Curcan & Broccoli 800g” | Admin → produs → Search engine listing | M | Elimină canibalizarea între variante |
+| 1 | Publicați copia de temă „Preload hero fix 2026-11-26” (deja pregătită și verificată). **Nu publicați tema din repo**: e mai veche decât tema activă | Shopify Admin → Online Store → Themes | S | Elimină descărcarea dublă a imaginii hero; LCP mai mic pe homepage |
+| 2 | Înlocuiți trunchierea la 42 de caractere a titlurilor de produs (blocul `<title>` din `layout/theme.liquid`) cu o regulă care păstrează diferențiatorul (aromă, gramaj, culoare, mărime) | Tema activă (cod) | S–M | Rezolvă cele 30 de grupuri de titluri duplicate (86 de produse) dintr-o singură modificare |
 | 3 | Corectați descrierea produsului Luger's vită & cartof 400g: subtitlurile H1 → H3 | Admin → produs → descriere | S | Un singur H1 pe pagină |
 
 ## Faza 2 — Săptămânile 2–3 (impact ridicat)

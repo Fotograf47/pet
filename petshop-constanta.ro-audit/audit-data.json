@@ -5,18 +5,23 @@
     "pages_crawled": 509,
     "date": "2026-11-26",
     "top_findings": [
-      "86 product pages share 30 duplicate titles",
-      "Live theme differs from repo: broken hero srcset + duplicate preload",
+      "86 product pages share 30 duplicate titles (theme truncates product.title to 42 chars)",
+      "Hero image downloaded twice: head preload used cdn.shopify.com URLs not matching the img (fixed in theme copy 'Preload hero fix 2026-11-26')",
       "Homepage mobile LCP 4.6 s (lab)",
       "Blog has a single article",
       "17 collections under 120 words"
     ],
     "quick_wins": [
-      "Publish repo theme",
-      "Rewrite 30 duplicate product SEO titles",
-      "Shorten 121 titles >60 chars",
+      "Publish theme copy 'Preload hero fix 2026-11-26' (do NOT publish the repo theme: live theme is newer)",
+      "Replace 42-char product title truncation in layout/theme.liquid",
       "Add GTIN to 344 products / SKU to 45",
-      "Fix 7 H1s on one Luger's product"
+      "Fix 7 H1s on one Luger's product",
+      "Collection intros on 17 thin collections"
+    ],
+    "corrections_2026_11_26": [
+      "Hero srcset is correct (550/750/950/1200/1248w); earlier 'broken srcset' finding was a truncated-output artifact",
+      "Duplicate titles are caused by the theme's 42-char truncation, not by Shopify Admin SEO titles",
+      "Live theme is newer than the repo theme; the repo theme must not be published"
     ]
   },
   "categories": [
@@ -33,8 +38,8 @@
         {
           "title": "Live theme differs from repo",
           "severity": "High",
-          "description": "Hero srcset and preload in production differ from theme/sections/hero-banner.liquid",
-          "recommendation": "Publish the repo theme after preview check"
+          "description": "Live theme 'JSON-LD LocalBusiness snippet 2026-11-20' is NEWER than the repo (local schema, cart upsell, homepage redesign)",
+          "recommendation": "Audit the Shopify theme, not the repo; never publish the repo theme over it"
         }
       ]
     },
@@ -76,8 +81,8 @@
         {
           "title": "Duplicate titles",
           "severity": "High",
-          "description": "30 groups / 86 pages, several truncated mid-phrase",
-          "recommendation": "Add flavour/size/colour to SEO titles"
+          "description": "30 groups / 86 pages; layout/theme.liquid truncates product.title to 42 chars at a word boundary, dropping the variant differentiator",
+          "recommendation": "Change the <title> rule to keep flavour/size/colour"
         },
         {
           "title": "Long titles",
@@ -133,8 +138,8 @@
         {
           "title": "Homepage LCP 4.6 s",
           "severity": "High",
-          "description": "45% of LCP is resource load delay on hero image",
-          "recommendation": "Publish repo theme (fixed srcset/preload)"
+          "description": "45% of LCP is resource load delay: head preload pointed at cdn.shopify.com URLs that did not match the img, causing a double download",
+          "recommendation": "Publish theme copy 'Preload hero fix 2026-11-26' (preview: 1 banner request instead of 2, LCP 2.0-2.1 s -> 1.7-1.9 s)"
         },
         {
           "title": "Main-thread JS",
@@ -181,8 +186,8 @@
         "name": "Phase 1: Critical Fixes",
         "timeframe": "Week 1",
         "items": [
-          "Publish repo theme",
-          "Rewrite 30 duplicate titles",
+          "Publish theme copy 'Preload hero fix 2026-11-26'",
+          "Fix 42-char product title truncation in theme",
           "Fix multi-H1 product"
         ]
       },
